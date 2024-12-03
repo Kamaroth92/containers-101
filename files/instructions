@@ -1,0 +1,8 @@
+FROM <image>
+WORKDIR <path>
+COPY <host-path> <image-path>
+RUN <command>
+ENV <name> <value>
+EXPOSE <port-number>
+USER <user-or-uid>
+CMD ["<command>", "<arg1>"]
