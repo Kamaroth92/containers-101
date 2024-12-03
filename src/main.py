@@ -212,8 +212,6 @@ class Main(Slide):
 
         self.play(Write(vm))
         self.wait(3)
-
-        self.next_slide(notes=speakerNotes.render())
         speakerNotes.title = "Runtimes"
         speakerNotes.body = """
             - runc: Default Docker runtime, OCI-compliant.
@@ -224,6 +222,7 @@ class Main(Slide):
             - crun: Faster, lightweight runc alternative written in C.
             - youki: OCI-compliant runtime written in Rust.
             """
+        self.next_slide(notes=speakerNotes.render())
         phys_machine2 = Rectangle(width=5, height=0.8, color=YELLOW).shift(DOWN * 2.5)
         phys_machine2_label = Text(
             "Phyiscal Machine Shared Kernel", font_size=20
