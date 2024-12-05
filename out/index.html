@@ -55,6 +55,17 @@
               
               >
               <aside class="notes" data-markdown>**Containers 101**  
+
+- Containers: Lightweight, portable, and self-sufficient software environments.
+- Purpose: Package applications with their dependencies to ensure consistent operation across environments.
+- Isolation: Run independently from the host system and other containers using namespaces and cgroups.
+- Efficiency: Share the host OS kernel, making them faster and less resource-intensive than virtual machines.
+- Images: Containers are created from images, which are templates that define the container's filesystem and behavior.
+- Portability: Run the same container on different machines, ensuring reproducibility.
+- Orchestration: Can be managed and scaled using tools like Kubernetes or Docker Swarm.
+- Networking: Communicate with each other and external systems via virtual networks.
+- Use Cases: Application deployment, microservices architecture, testing, and development environments.
+
 </aside>
             </section><section
               data-background-size='contain'
@@ -63,6 +74,17 @@
               
               >
               <aside class="notes" data-markdown>**Containers 101**  
+
+- Containers: Lightweight, portable, and self-sufficient software environments.
+- Purpose: Package applications with their dependencies to ensure consistent operation across environments.
+- Isolation: Run independently from the host system and other containers using namespaces and cgroups.
+- Efficiency: Share the host OS kernel, making them faster and less resource-intensive than virtual machines.
+- Images: Containers are created from images, which are templates that define the container's filesystem and behavior.
+- Portability: Run the same container on different machines, ensuring reproducibility.
+- Orchestration: Can be managed and scaled using tools like Kubernetes or Docker Swarm.
+- Networking: Communicate with each other and external systems via virtual networks.
+- Use Cases: Application deployment, microservices architecture, testing, and development environments.
+
 </aside>
             </section><section
               data-background-size='contain'
@@ -71,6 +93,17 @@
               
               >
               <aside class="notes" data-markdown>**Containers 101**  
+
+- Containers: Lightweight, portable, and self-sufficient software environments.
+- Purpose: Package applications with their dependencies to ensure consistent operation across environments.
+- Isolation: Run independently from the host system and other containers using namespaces and cgroups.
+- Efficiency: Share the host OS kernel, making them faster and less resource-intensive than virtual machines.
+- Images: Containers are created from images, which are templates that define the container's filesystem and behavior.
+- Portability: Run the same container on different machines, ensuring reproducibility.
+- Orchestration: Can be managed and scaled using tools like Kubernetes or Docker Swarm.
+- Networking: Communicate with each other and external systems via virtual networks.
+- Use Cases: Application deployment, microservices architecture, testing, and development environments.
+
 </aside>
             </section><section
               data-background-size='contain'
@@ -78,7 +111,24 @@
               data-background-video="index_assets/46b9129ede8727c9ef3490198e6c77ccbb29cbb169f54ef0a6e585d358b167d9.mp4"
               
               >
-              <aside class="notes" data-markdown>**Containers 101**  
+              <aside class="notes" data-markdown>**VM and Containers**  
+
+Virtual Machines:
+- Each VM runs a complete guest OS, independent of the host OS.
+- Requires a hypervisor (e.g., VMware, KVM) to virtualize hardware.
+- Heavyweight: High resource usage due to the full OS and virtualized hardware.
+- Each VM has isolated storage, memory, and network interfaces.
+- Slower startup times due to the need to boot an OS.
+- Suitable for running different operating systems or applications with conflicting dependencies.
+Containers:
+- Share the host OS kernel; no separate guest OS.
+- Use a container runtime (e.g., Docker, Podman) for managing resources.
+- Lightweight: Efficient in resource usage, as they share the OS kernel.
+- Provide process-level isolation with separate libraries and dependencies.
+- Faster startup times, as they do not boot a full OS.
+- Ideal for microservices architectures and consistent development environments.
+
+
 </aside>
             </section><section
               data-background-size='contain'
@@ -86,7 +136,24 @@
               data-background-video="index_assets/dbdca3a20c1fa731dedc5c87aa4640ff79cf14cf3d10b59ed4ae629f5d61a350.mp4"
               
               >
-              <aside class="notes" data-markdown>**Containers 101**  
+              <aside class="notes" data-markdown>**VM and Containers**  
+
+Virtual Machines:
+- Each VM runs a complete guest OS, independent of the host OS.
+- Requires a hypervisor (e.g., VMware, KVM) to virtualize hardware.
+- Heavyweight: High resource usage due to the full OS and virtualized hardware.
+- Each VM has isolated storage, memory, and network interfaces.
+- Slower startup times due to the need to boot an OS.
+- Suitable for running different operating systems or applications with conflicting dependencies.
+Containers:
+- Share the host OS kernel; no separate guest OS.
+- Use a container runtime (e.g., Docker, Podman) for managing resources.
+- Lightweight: Efficient in resource usage, as they share the OS kernel.
+- Provide process-level isolation with separate libraries and dependencies.
+- Faster startup times, as they do not boot a full OS.
+- Ideal for microservices architectures and consistent development environments.
+
+
 </aside>
             </section><section
               data-background-size='contain'
@@ -111,7 +178,24 @@
               data-background-video="index_assets/145a99b6401f49df1b170e86b9148f768232bd430fc9f11b5466f4cc79a29d85.mp4"
               
               >
-              <aside class="notes" data-markdown>**Runtimes**  
+              <aside class="notes" data-markdown>**Building containers**  
+
+Building Containers with a Dockerfile:
+Dockerfile: A text file with instructions to build a Docker image.
+
+Basic Structure:
+
+- FROM: Specifies the base image (e.g., ubuntu, alpine).
+- RUN: Executes commands during image build (e.g., install software).
+- COPY/ADD: Copies files or directories into the image.
+- CMD/ENTRYPOINT: Specifies the default command to run when the container starts.
+- ENV: Sets environment variables.
+- WORKDIR: Sets the working directory inside the container.
+- EXPOSE: Documents which ports the container listens on.
+- Commands Order: The order of instructions impacts the build process and the number of image layers created.
+
+
+
 </aside>
             </section><section
               data-background-size='contain'
@@ -119,7 +203,24 @@
               data-background-video="index_assets/c3c3f75c41c27ed861dfcd5c3ee96cdde355bcca914fcf09df15c45de39aead8.mp4"
               
               >
-              <aside class="notes" data-markdown>**Runtimes**  
+              <aside class="notes" data-markdown>**Building containers**  
+
+Building Containers with a Dockerfile:
+Dockerfile: A text file with instructions to build a Docker image.
+
+Basic Structure:
+
+- FROM: Specifies the base image (e.g., ubuntu, alpine).
+- RUN: Executes commands during image build (e.g., install software).
+- COPY/ADD: Copies files or directories into the image.
+- CMD/ENTRYPOINT: Specifies the default command to run when the container starts.
+- ENV: Sets environment variables.
+- WORKDIR: Sets the working directory inside the container.
+- EXPOSE: Documents which ports the container listens on.
+- Commands Order: The order of instructions impacts the build process and the number of image layers created.
+
+
+
 </aside>
             </section><section
               data-background-size='contain'
@@ -127,15 +228,498 @@
               data-background-video="index_assets/2932ea3bdda643c1a5381f2685058b2849519aa2f541fe12d7f7aa9858dc082f.mp4"
               
               >
-              <aside class="notes" data-markdown>**Runtimes**  
+              <aside class="notes" data-markdown>**Building containers**  
+
+Building Containers with a Dockerfile:
+Dockerfile: A text file with instructions to build a Docker image.
+
+Basic Structure:
+
+- FROM: Specifies the base image (e.g., ubuntu, alpine).
+- RUN: Executes commands during image build (e.g., install software).
+- COPY/ADD: Copies files or directories into the image.
+- CMD/ENTRYPOINT: Specifies the default command to run when the container starts.
+- ENV: Sets environment variables.
+- WORKDIR: Sets the working directory inside the container.
+- EXPOSE: Documents which ports the container listens on.
+- Commands Order: The order of instructions impacts the build process and the number of image layers created.
+
+
+
 </aside>
             </section><section
               data-background-size='contain'
               data-background-color="black"
-              data-background-video="index_assets/8a166feb27f8bd72a2d0179252f6855d3777e8fe6890cb29218605434f027598.mp4"
+              data-background-video="index_assets/54014cfa3d31a2ebe25be46521a4c25e28b8d828e754668f3c722b6a8d5380c2.mp4"
               
               >
-              <aside class="notes" data-markdown>**Runtimes**  
+              <aside class="notes" data-markdown>**layers**  
+
+- Layered Architecture: Docker images are built in layers, with each instruction in the Dockerfile creating a new layer.
+- Reusability: Layers are cached and reused if they haven't changed (e.g., RUN apt-get update).
+- Read-Only Layers: All layers except the top writable layer are read-only.
+- Layer Structure:
+- The base layer comes from the FROM instruction.
+- Each subsequent instruction (e.g., RUN, COPY) adds a new layer.
+- Size Optimization:
+- Combine RUN commands to reduce the number of layers (e.g., RUN apt-get update && apt-get install).
+- Use .dockerignore to exclude unnecessary files from the build context.
+- Performance Benefits:
+- Unchanged layers are cached, speeding up rebuilds.
+- Modifying a layer invalidates only that layer and subsequent layers in the cache.
+
+
+</aside>
+            </section><section
+              data-background-size='contain'
+              data-background-color="black"
+              data-background-video="index_assets/dd6bf4a044f31f3c74eff447553f1a031a14ecfcae9d826cd38657233385b946.mp4"
+              
+              >
+              <aside class="notes" data-markdown>**layers**  
+
+- Layered Architecture: Docker images are built in layers, with each instruction in the Dockerfile creating a new layer.
+- Reusability: Layers are cached and reused if they haven't changed (e.g., RUN apt-get update).
+- Read-Only Layers: All layers except the top writable layer are read-only.
+- Layer Structure:
+- The base layer comes from the FROM instruction.
+- Each subsequent instruction (e.g., RUN, COPY) adds a new layer.
+- Size Optimization:
+- Combine RUN commands to reduce the number of layers (e.g., RUN apt-get update && apt-get install).
+- Use .dockerignore to exclude unnecessary files from the build context.
+- Performance Benefits:
+- Unchanged layers are cached, speeding up rebuilds.
+- Modifying a layer invalidates only that layer and subsequent layers in the cache.
+
+
+</aside>
+            </section><section
+              data-background-size='contain'
+              data-background-color="black"
+              data-background-video="index_assets/0ee75526d22801e6f5d773b07c6c50f647d9c00ee2d011ff1446e3f4eeb29feb.mp4"
+              
+              >
+              <aside class="notes" data-markdown>**layers**  
+
+- Layered Architecture: Docker images are built in layers, with each instruction in the Dockerfile creating a new layer.
+- Reusability: Layers are cached and reused if they haven't changed (e.g., RUN apt-get update).
+- Read-Only Layers: All layers except the top writable layer are read-only.
+- Layer Structure:
+- The base layer comes from the FROM instruction.
+- Each subsequent instruction (e.g., RUN, COPY) adds a new layer.
+- Size Optimization:
+- Combine RUN commands to reduce the number of layers (e.g., RUN apt-get update && apt-get install).
+- Use .dockerignore to exclude unnecessary files from the build context.
+- Performance Benefits:
+- Unchanged layers are cached, speeding up rebuilds.
+- Modifying a layer invalidates only that layer and subsequent layers in the cache.
+
+
+</aside>
+            </section><section
+              data-background-size='contain'
+              data-background-color="black"
+              data-background-video="index_assets/7b63b1a4976e96050b1d621059bf1beedb475ad0d6ffef09353cb8b8dabc4667.mp4"
+              
+              >
+              <aside class="notes" data-markdown>**layers**  
+
+- Layered Architecture: Docker images are built in layers, with each instruction in the Dockerfile creating a new layer.
+- Reusability: Layers are cached and reused if they haven't changed (e.g., RUN apt-get update).
+- Read-Only Layers: All layers except the top writable layer are read-only.
+- Layer Structure:
+- The base layer comes from the FROM instruction.
+- Each subsequent instruction (e.g., RUN, COPY) adds a new layer.
+- Size Optimization:
+- Combine RUN commands to reduce the number of layers (e.g., RUN apt-get update && apt-get install).
+- Use .dockerignore to exclude unnecessary files from the build context.
+- Performance Benefits:
+- Unchanged layers are cached, speeding up rebuilds.
+- Modifying a layer invalidates only that layer and subsequent layers in the cache.
+
+
+</aside>
+            </section><section
+              data-background-size='contain'
+              data-background-color="black"
+              data-background-video="index_assets/6ac3f14392894ebc2b2befc0587e371d9e2308541af8e1608e41ed8620ba16c4.mp4"
+              
+              >
+              <aside class="notes" data-markdown>**layers**  
+
+- Layered Architecture: Docker images are built in layers, with each instruction in the Dockerfile creating a new layer.
+- Reusability: Layers are cached and reused if they haven't changed (e.g., RUN apt-get update).
+- Read-Only Layers: All layers except the top writable layer are read-only.
+- Layer Structure:
+- The base layer comes from the FROM instruction.
+- Each subsequent instruction (e.g., RUN, COPY) adds a new layer.
+- Size Optimization:
+- Combine RUN commands to reduce the number of layers (e.g., RUN apt-get update && apt-get install).
+- Use .dockerignore to exclude unnecessary files from the build context.
+- Performance Benefits:
+- Unchanged layers are cached, speeding up rebuilds.
+- Modifying a layer invalidates only that layer and subsequent layers in the cache.
+
+
+</aside>
+            </section><section
+              data-background-size='contain'
+              data-background-color="black"
+              data-background-video="index_assets/fcf22ca053d5f638f311b294e2a825785ed977c72dbb7e61899880dd9bb4f1d0.mp4"
+              
+              >
+              <aside class="notes" data-markdown>**layers**  
+
+- Layered Architecture: Docker images are built in layers, with each instruction in the Dockerfile creating a new layer.
+- Reusability: Layers are cached and reused if they haven't changed (e.g., RUN apt-get update).
+- Read-Only Layers: All layers except the top writable layer are read-only.
+- Layer Structure:
+- The base layer comes from the FROM instruction.
+- Each subsequent instruction (e.g., RUN, COPY) adds a new layer.
+- Size Optimization:
+- Combine RUN commands to reduce the number of layers (e.g., RUN apt-get update && apt-get install).
+- Use .dockerignore to exclude unnecessary files from the build context.
+- Performance Benefits:
+- Unchanged layers are cached, speeding up rebuilds.
+- Modifying a layer invalidates only that layer and subsequent layers in the cache.
+
+
+</aside>
+            </section><section
+              data-background-size='contain'
+              data-background-color="black"
+              data-background-video="index_assets/ab3afad1fefa4a5c60835257343275ab323de47982286a656f44a9e150527b95.mp4"
+              
+              >
+              <aside class="notes" data-markdown>**cgroups**  
+
+INTRO
+- Short for Control Groups, a Linux kernel feature for managing and isolating system resources.
+- Allows grouping processes and setting resource limits, prioritization, monitoring, and control.
+FEATURES
+- Resource Limiting: Restrict CPU, memory, disk I/O, network bandwidth, and more.
+- Prioritization: Assign higher priority to critical processes or workloads.
+- Accounting: Track resource usage for monitoring or billing purposes.
+- Isolation: Prevent processes from interfering with each other's resource usage.
+- Dynamic Control: Adjust resource limits in real-time without restarting processes.
+RESOURCES
+- CPU: Limit CPU usage using shares, quotas, and periods.
+- Memory: Constrain memory usage; trigger actions if limits are exceeded.
+- Disk I/O: Throttle read/write speeds for specific devices.
+- Network Bandwidth: Control ingress/egress rates per process group.
+- Processes (PIDs): Limit the number of processes a group can create.
+- Device Access: Restrict access to physical devices like GPUs or disks.
+
+
+
+</aside>
+            </section><section
+              data-background-size='contain'
+              data-background-color="black"
+              data-background-video="index_assets/97e969465d1183ab00e500f4d6c454aaf24dadc9c55a3ce52a3fd91ba70abc20.mp4"
+              
+              >
+              <aside class="notes" data-markdown>**cgroups**  
+
+INTRO
+- Short for Control Groups, a Linux kernel feature for managing and isolating system resources.
+- Allows grouping processes and setting resource limits, prioritization, monitoring, and control.
+FEATURES
+- Resource Limiting: Restrict CPU, memory, disk I/O, network bandwidth, and more.
+- Prioritization: Assign higher priority to critical processes or workloads.
+- Accounting: Track resource usage for monitoring or billing purposes.
+- Isolation: Prevent processes from interfering with each other's resource usage.
+- Dynamic Control: Adjust resource limits in real-time without restarting processes.
+RESOURCES
+- CPU: Limit CPU usage using shares, quotas, and periods.
+- Memory: Constrain memory usage; trigger actions if limits are exceeded.
+- Disk I/O: Throttle read/write speeds for specific devices.
+- Network Bandwidth: Control ingress/egress rates per process group.
+- Processes (PIDs): Limit the number of processes a group can create.
+- Device Access: Restrict access to physical devices like GPUs or disks.
+
+
+
+</aside>
+            </section><section
+              data-background-size='contain'
+              data-background-color="black"
+              data-background-video="index_assets/4f8544703f36fd13ff17fcb8c7610299e815a225f5d95746116611335e726c93.mp4"
+              
+              >
+              <aside class="notes" data-markdown>**cgroups**  
+
+INTRO
+- Short for Control Groups, a Linux kernel feature for managing and isolating system resources.
+- Allows grouping processes and setting resource limits, prioritization, monitoring, and control.
+FEATURES
+- Resource Limiting: Restrict CPU, memory, disk I/O, network bandwidth, and more.
+- Prioritization: Assign higher priority to critical processes or workloads.
+- Accounting: Track resource usage for monitoring or billing purposes.
+- Isolation: Prevent processes from interfering with each other's resource usage.
+- Dynamic Control: Adjust resource limits in real-time without restarting processes.
+RESOURCES
+- CPU: Limit CPU usage using shares, quotas, and periods.
+- Memory: Constrain memory usage; trigger actions if limits are exceeded.
+- Disk I/O: Throttle read/write speeds for specific devices.
+- Network Bandwidth: Control ingress/egress rates per process group.
+- Processes (PIDs): Limit the number of processes a group can create.
+- Device Access: Restrict access to physical devices like GPUs or disks.
+
+
+
+</aside>
+            </section><section
+              data-background-size='contain'
+              data-background-color="black"
+              data-background-video="index_assets/5121a23f0f07b94923ea3a2a87521e6ea9cc5ab1d6335bfdd9ccc7019eaffc40.mp4"
+              
+              >
+              <aside class="notes" data-markdown>**cgroups**  
+
+INTRO
+- Short for Control Groups, a Linux kernel feature for managing and isolating system resources.
+- Allows grouping processes and setting resource limits, prioritization, monitoring, and control.
+FEATURES
+- Resource Limiting: Restrict CPU, memory, disk I/O, network bandwidth, and more.
+- Prioritization: Assign higher priority to critical processes or workloads.
+- Accounting: Track resource usage for monitoring or billing purposes.
+- Isolation: Prevent processes from interfering with each other's resource usage.
+- Dynamic Control: Adjust resource limits in real-time without restarting processes.
+RESOURCES
+- CPU: Limit CPU usage using shares, quotas, and periods.
+- Memory: Constrain memory usage; trigger actions if limits are exceeded.
+- Disk I/O: Throttle read/write speeds for specific devices.
+- Network Bandwidth: Control ingress/egress rates per process group.
+- Processes (PIDs): Limit the number of processes a group can create.
+- Device Access: Restrict access to physical devices like GPUs or disks.
+
+
+
+</aside>
+            </section><section
+              data-background-size='contain'
+              data-background-color="black"
+              data-background-video="index_assets/8dba6a59550264784ad3239bc88bc985b82372ad47bf174e3ca673ba9ad4c7c1.mp4"
+              
+              >
+              <aside class="notes" data-markdown>**cgroups**  
+
+INTRO
+- Short for Control Groups, a Linux kernel feature for managing and isolating system resources.
+- Allows grouping processes and setting resource limits, prioritization, monitoring, and control.
+FEATURES
+- Resource Limiting: Restrict CPU, memory, disk I/O, network bandwidth, and more.
+- Prioritization: Assign higher priority to critical processes or workloads.
+- Accounting: Track resource usage for monitoring or billing purposes.
+- Isolation: Prevent processes from interfering with each other's resource usage.
+- Dynamic Control: Adjust resource limits in real-time without restarting processes.
+RESOURCES
+- CPU: Limit CPU usage using shares, quotas, and periods.
+- Memory: Constrain memory usage; trigger actions if limits are exceeded.
+- Disk I/O: Throttle read/write speeds for specific devices.
+- Network Bandwidth: Control ingress/egress rates per process group.
+- Processes (PIDs): Limit the number of processes a group can create.
+- Device Access: Restrict access to physical devices like GPUs or disks.
+
+
+
+</aside>
+            </section><section
+              data-background-size='contain'
+              data-background-color="black"
+              data-background-video="index_assets/5a194748ab26f540f97bd8c9d56b8bea35fbdc825daa11944720ebc10265ef9a.mp4"
+              
+              >
+              <aside class="notes" data-markdown>**cgroups**  
+
+INTRO
+- Short for Control Groups, a Linux kernel feature for managing and isolating system resources.
+- Allows grouping processes and setting resource limits, prioritization, monitoring, and control.
+FEATURES
+- Resource Limiting: Restrict CPU, memory, disk I/O, network bandwidth, and more.
+- Prioritization: Assign higher priority to critical processes or workloads.
+- Accounting: Track resource usage for monitoring or billing purposes.
+- Isolation: Prevent processes from interfering with each other's resource usage.
+- Dynamic Control: Adjust resource limits in real-time without restarting processes.
+RESOURCES
+- CPU: Limit CPU usage using shares, quotas, and periods.
+- Memory: Constrain memory usage; trigger actions if limits are exceeded.
+- Disk I/O: Throttle read/write speeds for specific devices.
+- Network Bandwidth: Control ingress/egress rates per process group.
+- Processes (PIDs): Limit the number of processes a group can create.
+- Device Access: Restrict access to physical devices like GPUs or disks.
+
+
+
+</aside>
+            </section><section
+              data-background-size='contain'
+              data-background-color="black"
+              data-background-video="index_assets/3ab90ec66dea9d65b3b2187585a81c9446629ad4683d65e935ad06dbc86a7d9d.mp4"
+              
+              >
+              <aside class="notes" data-markdown>**cgroups**  
+
+INTRO
+- Short for Control Groups, a Linux kernel feature for managing and isolating system resources.
+- Allows grouping processes and setting resource limits, prioritization, monitoring, and control.
+FEATURES
+- Resource Limiting: Restrict CPU, memory, disk I/O, network bandwidth, and more.
+- Prioritization: Assign higher priority to critical processes or workloads.
+- Accounting: Track resource usage for monitoring or billing purposes.
+- Isolation: Prevent processes from interfering with each other's resource usage.
+- Dynamic Control: Adjust resource limits in real-time without restarting processes.
+RESOURCES
+- CPU: Limit CPU usage using shares, quotas, and periods.
+- Memory: Constrain memory usage; trigger actions if limits are exceeded.
+- Disk I/O: Throttle read/write speeds for specific devices.
+- Network Bandwidth: Control ingress/egress rates per process group.
+- Processes (PIDs): Limit the number of processes a group can create.
+- Device Access: Restrict access to physical devices like GPUs or disks.
+
+
+
+</aside>
+            </section><section
+              data-background-size='contain'
+              data-background-color="black"
+              data-background-video="index_assets/dfeab65ed863f943ed8025a1dd511ff7d8c19b2198faf8b3135ea2c19549c660.mp4"
+              
+              >
+              <aside class="notes" data-markdown>**cgroups**  
+
+INTRO
+- Short for Control Groups, a Linux kernel feature for managing and isolating system resources.
+- Allows grouping processes and setting resource limits, prioritization, monitoring, and control.
+FEATURES
+- Resource Limiting: Restrict CPU, memory, disk I/O, network bandwidth, and more.
+- Prioritization: Assign higher priority to critical processes or workloads.
+- Accounting: Track resource usage for monitoring or billing purposes.
+- Isolation: Prevent processes from interfering with each other's resource usage.
+- Dynamic Control: Adjust resource limits in real-time without restarting processes.
+RESOURCES
+- CPU: Limit CPU usage using shares, quotas, and periods.
+- Memory: Constrain memory usage; trigger actions if limits are exceeded.
+- Disk I/O: Throttle read/write speeds for specific devices.
+- Network Bandwidth: Control ingress/egress rates per process group.
+- Processes (PIDs): Limit the number of processes a group can create.
+- Device Access: Restrict access to physical devices like GPUs or disks.
+
+
+
+</aside>
+            </section><section
+              data-background-size='contain'
+              data-background-color="black"
+              data-background-video="index_assets/cf9c4ed700a1f931b937b1653dffe787f791c0b8948d331ff2538203b53777a3.mp4"
+              
+              >
+              <aside class="notes" data-markdown>**cgroups**  
+
+INTRO
+- Short for Control Groups, a Linux kernel feature for managing and isolating system resources.
+- Allows grouping processes and setting resource limits, prioritization, monitoring, and control.
+FEATURES
+- Resource Limiting: Restrict CPU, memory, disk I/O, network bandwidth, and more.
+- Prioritization: Assign higher priority to critical processes or workloads.
+- Accounting: Track resource usage for monitoring or billing purposes.
+- Isolation: Prevent processes from interfering with each other's resource usage.
+- Dynamic Control: Adjust resource limits in real-time without restarting processes.
+RESOURCES
+- CPU: Limit CPU usage using shares, quotas, and periods.
+- Memory: Constrain memory usage; trigger actions if limits are exceeded.
+- Disk I/O: Throttle read/write speeds for specific devices.
+- Network Bandwidth: Control ingress/egress rates per process group.
+- Processes (PIDs): Limit the number of processes a group can create.
+- Device Access: Restrict access to physical devices like GPUs or disks.
+
+
+
+</aside>
+            </section><section
+              data-background-size='contain'
+              data-background-color="black"
+              data-background-video="index_assets/b4620b7efddd779f02b30692eb51729d069b960db3eba1f6bb76366818808ed5.mp4"
+              
+              >
+              <aside class="notes" data-markdown>**deployment**  
+
+Standalone
+
+Run containers using docker run or podman.
+Simple and direct, suitable for single-host deployments.
+Docker Compose
+
+Define multi-container apps in docker-compose.yml.
+Use docker-compose up for local dev or small-scale setups.
+Kubernetes
+
+Orchestrate containers with YAML manifests and kubectl.
+Scalable, production-grade, with features like auto-scaling and load balancing.
+Docker Swarm
+
+Cluster setup with docker swarm init.
+Use docker stack deploy for simpler orchestration than Kubernetes.
+OpenShift
+
+Kubernetes-based with enterprise features.
+Includes web UI and CI/CD pipelines.
+Nomad
+
+Deploy containers alongside other workloads.
+Lightweight and hybrid workload-friendly.
+Managed Services
+
+Examples: AWS ECS, Google Cloud Run.
+Push images to registries; let the provider handle orchestration.
+Edge/Hybrid
+
+Tools: K3s, MicroK8s.
+Deploy lightweight clusters for resource-constrained environments.
+
+</aside>
+            </section><section
+              data-background-size='contain'
+              data-background-color="black"
+              data-background-video="index_assets/f5bdb05df35c3c4db490f5a19aed088244bfa4b80e9baa5f72eeb1c84fa8cf32.mp4"
+              
+              >
+              <aside class="notes" data-markdown>**deployment**  
+
+Standalone
+
+Run containers using docker run or podman.
+Simple and direct, suitable for single-host deployments.
+Docker Compose
+
+Define multi-container apps in docker-compose.yml.
+Use docker-compose up for local dev or small-scale setups.
+Kubernetes
+
+Orchestrate containers with YAML manifests and kubectl.
+Scalable, production-grade, with features like auto-scaling and load balancing.
+Docker Swarm
+
+Cluster setup with docker swarm init.
+Use docker stack deploy for simpler orchestration than Kubernetes.
+OpenShift
+
+Kubernetes-based with enterprise features.
+Includes web UI and CI/CD pipelines.
+Nomad
+
+Deploy containers alongside other workloads.
+Lightweight and hybrid workload-friendly.
+Managed Services
+
+Examples: AWS ECS, Google Cloud Run.
+Push images to registries; let the provider handle orchestration.
+Edge/Hybrid
+
+Tools: K3s, MicroK8s.
+Deploy lightweight clusters for resource-constrained environments.
+
 </aside>
             </section></div>
     </div>

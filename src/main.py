@@ -23,7 +23,6 @@ class SpeakerNotes:
     @property
     def body(self):
         tNext = self._body
-        self.body = ""
         return textwrap.dedent(tNext)
 
     @body.setter
@@ -102,6 +101,17 @@ class Main(Slide):
         self.play(Write(outline), Write(contents))
 
         speakerNotes.title = "Containers 101"
+        speakerNotes.body = """
+            - Containers: Lightweight, portable, and self-sufficient software environments.
+            - Purpose: Package applications with their dependencies to ensure consistent operation across environments.
+            - Isolation: Run independently from the host system and other containers using namespaces and cgroups.
+            - Efficiency: Share the host OS kernel, making them faster and less resource-intensive than virtual machines.
+            - Images: Containers are created from images, which are templates that define the container's filesystem and behavior.
+            - Portability: Run the same container on different machines, ensuring reproducibility.
+            - Orchestration: Can be managed and scaled using tools like Kubernetes or Docker Swarm.
+            - Networking: Communicate with each other and external systems via virtual networks.
+            - Use Cases: Application deployment, microservices architecture, testing, and development environments.
+            """
         self.next_slide(notes=speakerNotes.render())
         heading = VGroup()
         heading.add(Text("Containers 101", font_size=24).to_corner(UL))
@@ -146,6 +156,24 @@ class Main(Slide):
         body_h.arrange(DOWN, center=True, aligned_edge=LEFT)
         self.play(FadeTransform(body[0], body_h[0]))
 
+        speakerNotes.title = "VM and Containers"
+        speakerNotes.body = """
+            Virtual Machines:
+            - Each VM runs a complete guest OS, independent of the host OS.
+            - Requires a hypervisor (e.g., VMware, KVM) to virtualize hardware.
+            - Heavyweight: High resource usage due to the full OS and virtualized hardware.
+            - Each VM has isolated storage, memory, and network interfaces.
+            - Slower startup times due to the need to boot an OS.
+            - Suitable for running different operating systems or applications with conflicting dependencies.
+            Containers:
+            - Share the host OS kernel; no separate guest OS.
+            - Use a container runtime (e.g., Docker, Podman) for managing resources.
+            - Lightweight: Efficient in resource usage, as they share the OS kernel.
+            - Provide process-level isolation with separate libraries and dependencies.
+            - Faster startup times, as they do not boot a full OS.
+            - Ideal for microservices architectures and consistent development environments.
+
+        """
         self.next_slide(notes=speakerNotes.render())
         self.play(*[FadeOut(mob) for mob in self.mobjects if type(mob) is not VGroup])
 
@@ -268,7 +296,24 @@ class Main(Slide):
         container.shift(RIGHT * 3.5)
 
         self.play(Write(container))
+        speakerNotes.title = "Building containers"
+        speakerNotes.body = """
+            Building Containers with a Dockerfile:
+            Dockerfile: A text file with instructions to build a Docker image.
 
+            Basic Structure:
+
+            - FROM: Specifies the base image (e.g., ubuntu, alpine).
+            - RUN: Executes commands during image build (e.g., install software).
+            - COPY/ADD: Copies files or directories into the image.
+            - CMD/ENTRYPOINT: Specifies the default command to run when the container starts.
+            - ENV: Sets environment variables.
+            - WORKDIR: Sets the working directory inside the container.
+            - EXPOSE: Documents which ports the container listens on.
+            - Commands Order: The order of instructions impacts the build process and the number of image layers created.
+
+
+"""
         self.next_slide(notes=speakerNotes.render())
         self.play(
             *[FadeOut(mob) for mob in self.mobjects if type(mob) is not VGroup],
@@ -283,6 +328,7 @@ class Main(Slide):
         )
         subheading3.add(Underline(subheading3[1]))
         self.play(ReplacementTransform(subheading2, subheading3))
+
         self.next_slide(notes=speakerNotes.render())
 
         dockerfile = Code(
@@ -307,22 +353,24 @@ class Main(Slide):
         self.play(Write(dockerfile_instructions))
         self.next_slide(notes=speakerNotes.render())
         self.play(Write(dockerfile))
+        speakerNotes.title = "layers"
+        speakerNotes.body = """
+            - Layered Architecture: Docker images are built in layers, with each instruction in the Dockerfile creating a new layer.
+            - Reusability: Layers are cached and reused if they haven't changed (e.g., RUN apt-get update).
+            - Read-Only Layers: All layers except the top writable layer are read-only.
+            - Layer Structure:
+            - The base layer comes from the FROM instruction.
+            - Each subsequent instruction (e.g., RUN, COPY) adds a new layer.
+            - Size Optimization:
+            - Combine RUN commands to reduce the number of layers (e.g., RUN apt-get update && apt-get install).
+            - Use .dockerignore to exclude unnecessary files from the build context.
+            - Performance Benefits:
+            - Unchanged layers are cached, speeding up rebuilds.
+            - Modifying a layer invalidates only that layer and subsequent layers in the cache.
+
+        """
         self.next_slide(notes=speakerNotes.render())
         self.play(*[FadeOut(mob) for mob in self.mobjects if type(mob) is not VGroup])
-
-        # # =============================================================
-        # heading = VGroup()
-        # heading.add(Text("Containers 101", font_size=24).to_corner(UL))
-        # heading.add(Underline(heading[0]))
-        # subheading3 = VGroup()
-        # subheading3.add(Text(" . ").next_to(heading[0], RIGHT))
-        # subheading3.add(
-        #     Text("Building a container", font_size=24).next_to(subheading3[0], RIGHT)
-        # )
-        # subheading3.add(Underline(subheading3[1]))
-        # self.add(heading, subheading3)
-        # self.wait(1)
-        # # =============================================================
 
         subheading4 = VGroup()
         subheading4.add(Text(" . ").next_to(heading[0], RIGHT))
@@ -330,8 +378,10 @@ class Main(Slide):
         subheading4.add(Underline(subheading4[1]))
         self.play(ReplacementTransform(subheading3, subheading4))
 
-        layer = Layer().shift(LEFT * 3.5)
+        layer = Layer()
+        self.next_slide(notes=speakerNotes.render())
         self.play(Write(layer))
+        self.next_slide(notes=speakerNotes.render())
         self.play(layer[0].animate.arrange(DOWN, buff=0.8).shift(LEFT * 3))
         layer1_text = Text("'FROM ubuntu:latest'", font_size=20).next_to(layer[0][0])
         layer2_text = Text(
@@ -341,4 +391,186 @@ class Main(Slide):
             "'COPY hello.sh /usr/local/bin/hello.sh'", font_size=20
         ).next_to(layer[0][2])
         self.play(Write(layer1_text), Write(layer2_text), Write(layer3_text))
-        self.wait(3)
+        self.next_slide(notes=speakerNotes.render())
+        self.play(layer2_text.animate.set_color(GREEN))
+        self.next_slide(notes=speakerNotes.render())
+        self.play(layer3_text.animate.set_color(RED))
+
+        self.next_slide(notes=speakerNotes.render())
+        self.play(*[FadeOut(mob) for mob in self.mobjects if type(mob) is not VGroup])
+
+        heading2 = VGroup()
+        heading2.add(Text("Best practices", font_size=24).to_corner(UL))
+        heading2.add(Underline(heading2[0]))
+
+        subheading5 = VGroup()
+        subheading5.add(Text(" . ").next_to(heading[0], RIGHT))
+        subheading5.add(
+            Text("The next thing", font_size=24).next_to(subheading5[0], RIGHT)
+        )
+        subheading5.add(Underline(subheading5[1]))
+
+        self.play(
+            ReplacementTransform(heading, heading2),
+            # ReplacementTransform(subheading4, subheading5),
+            FadeOut(subheading4),
+        )
+
+        cgroup = VGroup()
+        cgroup.add(Text("cgroup"))
+        cgroup.add(Square().surround(cgroup[0]))
+        speakerNotes.title = "cgroups"
+        speakerNotes.body = """
+        INTRO
+        - Short for Control Groups, a Linux kernel feature for managing and isolating system resources.
+        - Allows grouping processes and setting resource limits, prioritization, monitoring, and control.
+        FEATURES
+        - Resource Limiting: Restrict CPU, memory, disk I/O, network bandwidth, and more.
+        - Prioritization: Assign higher priority to critical processes or workloads.
+        - Accounting: Track resource usage for monitoring or billing purposes.
+        - Isolation: Prevent processes from interfering with each other's resource usage.
+        - Dynamic Control: Adjust resource limits in real-time without restarting processes.
+        RESOURCES
+        - CPU: Limit CPU usage using shares, quotas, and periods.
+        - Memory: Constrain memory usage; trigger actions if limits are exceeded.
+        - Disk I/O: Throttle read/write speeds for specific devices.
+        - Network Bandwidth: Control ingress/egress rates per process group.
+        - Processes (PIDs): Limit the number of processes a group can create.
+        - Device Access: Restrict access to physical devices like GPUs or disks.
+
+        
+        """
+        self.next_slide(notes=speakerNotes.render())
+        self.play(FadeIn(cgroup))
+        self.next_slide(notes=speakerNotes.render())
+        self.play(VGroup(cgroup, Text("CPU\nMemory\nI/O\netc")).animate.arrange())
+        self.next_slide(notes=speakerNotes.render())
+        self.play(FadeOut(self.mobjects[-2]))
+
+        secrets = Text("--env MY_PASS=value\n--env-file secrets.env")
+        secrets2 = Text(
+            "--env MY_PASS=value\n--env-file secrets.env",
+            t2c={
+                "--env-file": GREEN,
+            },
+        )
+
+        self.play(FadeIn(secrets))
+        self.next_slide(notes=speakerNotes.render())
+        self.play(ReplacementTransform(secrets, secrets2))
+        self.next_slide(notes=speakerNotes.render())
+        self.play(FadeOut(secrets2))
+        self.next_slide(notes=speakerNotes.render())
+
+        dockerfile = VGroup(
+            Code(
+                "files/secrets-example",
+                tab_width=4,
+                background_stroke_width=1,
+                background_stroke_color=WHITE,
+                insert_line_no=False,
+                language="docker",
+            ),
+            Code(
+                "files/secrets-example-cmd",
+                tab_width=4,
+                background_stroke_width=1,
+                background_stroke_color=WHITE,
+                insert_line_no=False,
+                language="bash",
+            ),
+        )
+        dockerfile.arrange(DOWN)
+        self.next_slide(notes=speakerNotes.render())
+        self.play(Write(dockerfile))
+        self.next_slide(notes=speakerNotes.render())
+        self.play(FadeOut(dockerfile))
+        self.next_slide(notes=speakerNotes.render())
+
+        dockerfile = VGroup(
+            Code(
+                "files/user-example-app",
+                tab_width=4,
+                background_stroke_width=1,
+                background_stroke_color=WHITE,
+                insert_line_no=False,
+                language="docker",
+            ),
+            Code(
+                "files/user-example-root",
+                tab_width=4,
+                background_stroke_width=1,
+                background_stroke_color=WHITE,
+                insert_line_no=False,
+                language="docker",
+            ),
+        )
+        dockerfile.arrange(DOWN)
+
+        self.next_slide(notes=speakerNotes.render())
+        self.play(Write(dockerfile))
+        self.next_slide(notes=speakerNotes.render())
+        self.play(FadeOut(dockerfile))
+        speakerNotes.title = "deployment"
+        speakerNotes.body = """
+            Standalone
+
+            Run containers using docker run or podman.
+            Simple and direct, suitable for single-host deployments.
+            Docker Compose
+
+            Define multi-container apps in docker-compose.yml.
+            Use docker-compose up for local dev or small-scale setups.
+            Kubernetes
+
+            Orchestrate containers with YAML manifests and kubectl.
+            Scalable, production-grade, with features like auto-scaling and load balancing.
+            Docker Swarm
+
+            Cluster setup with docker swarm init.
+            Use docker stack deploy for simpler orchestration than Kubernetes.
+            OpenShift
+
+            Kubernetes-based with enterprise features.
+            Includes web UI and CI/CD pipelines.
+            Nomad
+
+            Deploy containers alongside other workloads.
+            Lightweight and hybrid workload-friendly.
+            Managed Services
+
+            Examples: AWS ECS, Google Cloud Run.
+            Push images to registries; let the provider handle orchestration.
+            Edge/Hybrid
+
+            Tools: K3s, MicroK8s.
+            Deploy lightweight clusters for resource-constrained environments.
+        """
+        self.next_slide(notes=speakerNotes.render())
+
+        self.play(*[FadeOut(mob) for mob in self.mobjects])
+        heading3 = VGroup()
+        heading3.add(Text("Pipeline", font_size=24).to_corner(UL))
+        heading3.add(Underline(heading3[0]))
+        self.play(
+            FadeIn(heading3),
+        )
+
+        self.next_slide(notes=speakerNotes.render())
+        self.play(*[FadeOut(mob) for mob in self.mobjects])
+        self.play(FadeIn(Text("Thank You")))
+
+        # # # =============================================================
+        # heading = VGroup()
+        # heading.add(Text("Pipeline", font_size=24).to_corner(UL))
+        # heading.add(Underline(heading[0]))
+        # # subheading3 = VGroup()
+        # # subheading3.add(Text(" . ").next_to(heading[0], RIGHT))
+        # # subheading3.add(
+        # #     Text("Building a container", font_size=24).next_to(subheading3[0], RIGHT)
+        # # )
+        # # subheading3.add(Underline(subheading3[1]))
+        # self.add(heading)  # , subheading3)
+        # self.wait(1)
+        # # # =============================================================
+        # self.wait(5)
